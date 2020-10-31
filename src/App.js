@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import Table from './Table.js'
+import { shuffle } from './helper.js'
 
 function App() {
+  const cards = shuffle([
+    'saladFingers',
+    'saladFingers',
+    'bat',
+    'bat',
+    'pumpkin',
+    'pumpkin',
+    'vampire',
+    'vampire',
+    'skull',
+    'skull',
+    'witch',
+    'witch',
+  ])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>SPOOKY Memory Game</h1>
+      <Table cards={cards} />
     </div>
   );
 }
 
-export default App;
+export default App
