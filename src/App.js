@@ -1,6 +1,6 @@
-import './App.css'
-import Table from './Table.js'
-import { shuffle } from './helper.js'
+import './App.css';
+import Table from './Table.js';
+import { shuffle } from './helper.js';
 
 function App() {
   const cards = shuffle([
@@ -16,7 +16,7 @@ function App() {
     'skull',
     'witch',
     'witch',
-  ])
+  ]);
 
   return (
     <div className="App">
@@ -26,4 +26,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

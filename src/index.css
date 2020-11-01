@@ -1,3 +1,68 @@
+/* PAGE */
+
+/* Pallette: https://www.colourlovers.com/palette/3915331/Halloween_4  */
+.App {
+  background-color: #130912;
+}
+
+h1 {
+  color: #f6921c;
+  text-align: center;
+  font-size: calc(30px + 2vmin);
+}
+
+/* CARD */
 .card {
-  width: 75%
+  width: 75%;
+}
+
+.test {
+  height: 25%;
+}
+
+/* TABLE */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+thead th {
+  border-bottom: 2px solid #dedede;
+}
+
+tfoot th {
+  border-top: 2px solid #dedede;
+}
+
+td {
+  border-bottom: 1px solid #dedede;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem;
+}
+
+caption {
+  padding: 1rem 0;
+  caption-side: bottom;
+  color: #ababab;
+}
+
+.striped-table tbody tr:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+
+.contain-table {
+  overflow-x: auto;
+}
+
+@media (min-width: 600px) {
+  .contain-table {
+    width: 100%;
+  }
 }
