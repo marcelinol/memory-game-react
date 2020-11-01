@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function Card(props) {
-  const images = require.context('./images', true);
+  const images = require.context('./images', true); // TODO: check why this is breaking the only test I have 👀
   const cardFrontImage = images(`./${props.id}.jpg`).default;
   const cardBackImage = images(`./cardBack.jpg`).default;
 
@@ -10,9 +10,11 @@ function Card(props) {
 
   const flipImage = () => {
     setImage(cardFrontImage);
-    setInterval(() => {
+    const timer = setInterval(() => {
       setImage(cardBackImage);
     }, 2500);
+
+    return () => clearInterval(timer);
   };
 
   return (
