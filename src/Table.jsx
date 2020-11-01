@@ -1,39 +1,62 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
 
-function Table({ cards }) {
-  const [cardsFacingUp, setCardsFacingUp] = useState(0);
+function Table({ cards, images }) {
+  const cardBackImage = images('./cardBack.jpg').default;
+  const cardNeutralImage = images('./neutral.jpg').default;
+
   const [cardsRevealed, setCardsRevealed] = useState([]);
 
-  const handleClick = () => {
-    setCardsFacingUp(cardsFacingUp + 1);
-    if (cardsRevealed.length === 2 && cardsRevealed[0] === cardsRevealed[1]) {
+  const revealCard = (id, imageName) => {
+    if (cardsRevealed.length === 2) {
+      console.log('2 cards facing up already');
+      return;
     }
-    console.log('handling click');
-    return;
+
+    cards.find((c) => c.id === id).imagePath = images(`./${imageName}.jpg`).default;
+
+    const newCardsRevealed = [...cardsRevealed, id];
+    setCardsRevealed(newCardsRevealed);
   };
 
-  const resetCardsFacingUp = () => setCardsFacingUp(0);
+  useEffect(() => {
+    if (cardsRevealed.length === 2) {
+      setTimeout(() => {
+        const firstCard = cards.find((c) => c.id === cardsRevealed[0]);
+        const secondCard = cards.find((c) => c.id === cardsRevealed[1]);
+        if (firstCard.imageName === secondCard.imageName) {
+          firstCard.imagePath = cardNeutralImage;
+          secondCard.imagePath = cardNeutralImage;
+        } else {
+          firstCard.imagePath = cardBackImage;
+          secondCard.imagePath = cardBackImage;
+        }
+        setCardsRevealed([]);
+      }, 1000);
+    }
+  }, [cardsRevealed]);
 
   useEffect(() => {
-    console.log('cards facing up: ', cardsFacingUp);
-  }, [cardsFacingUp]);
+    const playableCards = cards.find((c) => c.imagePath !== cardNeutralImage);
+    if (typeof playableCards === 'undefined') {
+      console.log('YOU WON');
+    }
+  });
 
   return (
     <table>
       <tbody>
         <tr>
           {cards.slice(0, 4).map((card) => {
-            const { id, image, matched } = card;
+            const { id, imageName, imagePath } = card;
             return (
               <td key={id}>
                 <Card
                   id={id}
-                  image={image}
-                  matched={matched}
-                  handleClick={handleClick}
-                  cardsFacingUp={cardsFacingUp}
-                  resetCardsFacingUp={resetCardsFacingUp}
+                  onClick={revealCard}
+                  imagePath={imagePath}
+                  imageName={imageName}
+                  disabledState={cardNeutralImage}
                 />
               </td>
             );
@@ -41,16 +64,15 @@ function Table({ cards }) {
         </tr>
         <tr>
           {cards.slice(4, 8).map((card) => {
-            const { id, image, matched } = card;
+            const { id, imageName, imagePath } = card;
             return (
               <td key={id}>
                 <Card
                   id={id}
-                  image={image}
-                  matched={matched}
-                  handleClick={handleClick}
-                  cardsFacingUp={cardsFacingUp}
-                  resetCardsFacingUp={resetCardsFacingUp}
+                  onClick={revealCard}
+                  imagePath={imagePath}
+                  imageName={imageName}
+                  disabledState={cardNeutralImage}
                 />
               </td>
             );
@@ -58,16 +80,15 @@ function Table({ cards }) {
         </tr>
         <tr>
           {cards.slice(8, 12).map((card) => {
-            const { id, image, matched } = card;
+            const { id, imageName, imagePath } = card;
             return (
               <td key={id}>
                 <Card
                   id={id}
-                  image={image}
-                  matched={matched}
-                  handleClick={handleClick}
-                  cardsFacingUp={cardsFacingUp}
-                  resetCardsFacingUp={resetCardsFacingUp}
+                  onClick={revealCard}
+                  imagePath={imagePath}
+                  imageName={imageName}
+                  disabledState={cardNeutralImage}
                 />
               </td>
             );
