@@ -1,5 +1,5 @@
 import './App.css';
-import Table from './Table.js';
+import Table from './Table';
 import { shuffle } from './helper.js';
 
 function App() {
