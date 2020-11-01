@@ -7,6 +7,7 @@ function Table({ cards, images }) {
 
   const [cardsRevealed, setCardsRevealed] = useState([]);
   const [displayVictory, setDisplayVictory] = useState(false);
+  const [clicksCount, setClicksCount] = useState(0);
 
   const revealCard = (id, imageName) => {
     if (cardsRevealed.length === 2) {
@@ -14,6 +15,8 @@ function Table({ cards, images }) {
     }
 
     cards.find((c) => c.id === id).imagePath = images(`./${imageName}.jpg`).default;
+
+    setClicksCount(clicksCount + 1);
 
     const newCardsRevealed = [...cardsRevealed, id];
     setCardsRevealed(newCardsRevealed);
@@ -45,7 +48,7 @@ function Table({ cards, images }) {
 
   return (
     <div>
-      {displayVictory ? <h2>YOU WON!!!</h2> : null}
+      {displayVictory ? <h2>YOU WON!!! And it only took you {clicksCount} clicks!</h2> : null}
       <table>
         <tbody>
           <tr>
