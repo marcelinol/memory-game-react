@@ -22,48 +22,57 @@ function Table({ cards }) {
   return (
     <table>
       <tbody>
-        {[0, 4, 8].map((index, _) => {
-          return (
-            <tr key={index}>
-              <td key={index}>
+        <tr>
+          {cards.slice(0, 4).map((card) => {
+            const { id, image, matched } = card;
+            return (
+              <td key={id}>
                 <Card
-                  id={cards[index].id}
-                  image={cards[index].image}
+                  id={id}
+                  image={image}
+                  matched={matched}
                   handleClick={handleClick}
                   cardsFacingUp={cardsFacingUp}
                   resetCardsFacingUp={resetCardsFacingUp}
                 />
               </td>
-              <td key={index + 1}>
+            );
+          })}
+        </tr>
+        <tr>
+          {cards.slice(4, 8).map((card) => {
+            const { id, image, matched } = card;
+            return (
+              <td key={id}>
                 <Card
-                  id={cards[index + 1].id}
-                  image={cards[index + 1].image}
+                  id={id}
+                  image={image}
+                  matched={matched}
                   handleClick={handleClick}
                   cardsFacingUp={cardsFacingUp}
                   resetCardsFacingUp={resetCardsFacingUp}
                 />
               </td>
-              <td key={index + 2}>
+            );
+          })}
+        </tr>
+        <tr>
+          {cards.slice(8, 12).map((card) => {
+            const { id, image, matched } = card;
+            return (
+              <td key={id}>
                 <Card
-                  id={cards[index + 2].id}
-                  image={cards[index + 2].image}
+                  id={id}
+                  image={image}
+                  matched={matched}
                   handleClick={handleClick}
                   cardsFacingUp={cardsFacingUp}
                   resetCardsFacingUp={resetCardsFacingUp}
                 />
               </td>
-              <td key={index + 3}>
-                <Card
-                  id={cards[index + 3].id}
-                  image={cards[index + 3].image}
-                  handleClick={handleClick}
-                  cardsFacingUp={cardsFacingUp}
-                  resetCardsFacingUp={resetCardsFacingUp}
-                />
-              </td>
-            </tr>
-          );
-        })}
+            );
+          })}
+        </tr>
       </tbody>
     </table>
   );
