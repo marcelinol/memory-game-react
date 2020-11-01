@@ -1,8 +1,29 @@
-const Card = ({ id }) => {
+import React, { useState } from 'react';
+
+function Card(props) {
   const images = require.context('./images', true);
-  // <img src={images(`./${id}.jpg`).default} alt={id} className="card" />
+  const cardFrontImage = images(`./${props.id}.jpg`).default;
+  const cardBackImage = images(`./cardBack.jpg`).default;
+
+  const [displayClass, setDisplayClass] = useState('');
+  const [image, setImage] = useState(cardBackImage);
+
+  const flipImage = () => {
+    setImage(cardFrontImage);
+    setInterval(() => {
+      setImage(cardBackImage);
+    }, 2500);
+  };
+
   return (
-    <img src={images(`./cardBack.jpg`).default} alt="memory card" className="card" />
+    <img
+      src={image}
+      alt="memory card"
+      className={`card ${displayClass}`}
+      onClick={() => {
+        flipImage();
+      }}
+    />
   );
 }
 
