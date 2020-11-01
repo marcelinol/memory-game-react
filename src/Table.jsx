@@ -10,7 +10,6 @@ function Table({ cards, images }) {
 
   const revealCard = (id, imageName) => {
     if (cardsRevealed.length === 2) {
-      console.log('2 cards facing up already');
       return;
     }
 
@@ -41,7 +40,6 @@ function Table({ cards, images }) {
     const playableCards = cards.find((c) => c.imagePath !== cardNeutralImage);
     if (typeof playableCards === 'undefined') {
       setDisplayVictory(true);
-      console.log('YOU WON');
     }
   });
 
