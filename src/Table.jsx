@@ -10,11 +10,13 @@ function Table({ cards, images }) {
   const [clicksCount, setClicksCount] = useState(0);
 
   const revealCard = (id, imageName) => {
-    if (cardsRevealed.length === 2) {
+    const card = cards.find((c) => c.id === id);
+    const cardFacingUp = card.imagePath === images(`./${card.imageName}.jpg`).default;
+    if (cardsRevealed.length === 2 || cardFacingUp) {
       return;
     }
 
-    cards.find((c) => c.id === id).imagePath = images(`./${imageName}.jpg`).default;
+    card.imagePath = images(`./${imageName}.jpg`).default;
 
     setClicksCount(clicksCount + 1);
 
